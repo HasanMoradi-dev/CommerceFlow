@@ -1,19 +1,28 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
-import { Eye,EyeOff} from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 
-function Login() {
-  const { login, loading, error } = useContext(AuthContext);
+function Register() {
+  const { register, loading, error } = useContext(AuthContext);
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [localError, setLocalError] = useState("");
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLocalError("");
 
-    const success = await login(username, password);
+    if (password !== confirmPassword) {
+      setLocalError("Passwords don't match.");
+      return;
+    }
+
+    const success = await register({username, password,confirmPassword,email});
 
     if (success) {
       navigate("/products");
@@ -25,17 +34,15 @@ function Login() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-10">
           <p className="text-amber-700 font-bold tracking-[0.3em] text-xs uppercase mb-2">
-            Welcome back
+            Join us
           </p>
-          <h1 className="text-white text-3xl font-extrabold">Log in</h1>
+          <h1 className="text-white text-3xl font-extrabold">Create account</h1>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-          <FloatingInput
-            label="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <FloatingInput label="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+           <FloatingInput label="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+
 
           <div className="relative">
             <FloatingInput
@@ -54,6 +61,13 @@ function Login() {
             </button>
           </div>
 
+          <FloatingInput
+            label="Confirm password"
+            type={showPassword ? "text" : "password"}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+
           <button
             type="submit"
             disabled={loading}
@@ -61,12 +75,19 @@ function Login() {
             hover:bg-amber-600 transition disabled:opacity-50 disabled:cursor-not-allowed
             mt-2"
           >
-            {loading ? "Logging in…" : "Login"}
+            {loading ? "Creating account…" : "Register"}
           </button>
 
-          {error && (
-            <p className="text-red-500 text-sm text-center -mt-4">{error}</p>
+          {(localError || error) && (
+            <p className="text-red-500 text-sm text-center -mt-4">{localError || error}</p>
           )}
+
+          <p className="text-gray-400 text-sm text-center -mt-2">
+            Already have an account?{" "}
+            <Link to="/login" className="text-amber-700 hover:underline">
+              Log in
+            </Link>
+          </p>
         </form>
       </div>
     </div>
@@ -89,14 +110,12 @@ function FloatingInput({ label, value, onChange, type = "text" }) {
         className="w-full bg-transparent text-white placeholder-transparent
         focus:outline-none pb-2 pt-6 pl-6"
       />
-
       <span
         className={`absolute left-6 top-0 text-xs uppercase tracking-widest transition-all
-        ${focused || hasValue ? "text-amber-700 translate-y-0" : "text-gray-500 translate-y-4"}`}
+         ${focused || hasValue ? "text-amber-700 translate-y-0" : "text-gray-500 translate-y-4"}`}
       >
         {label}
       </span>
-
       <span
         className={`absolute bottom-0 left-0 h-px bg-amber-700 transition-all duration-300
         ${focused ? "w-full" : "w-8"}`}
@@ -106,4 +125,4 @@ function FloatingInput({ label, value, onChange, type = "text" }) {
   );
 }
 
-export default Login;
+export default Register;
