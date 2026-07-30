@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "http://172.28.164.226:8000/api",
+    baseURL: import.meta.env.VITE_API_URL,
 });
 
 
@@ -51,7 +51,7 @@ api.interceptors.response.use(
 
         try {
             const tokens = JSON.parse(localStorage.getItem("tokens"));
-            const { data } = await axios.post("http://172.28.164.226:8000/api/auth/jwt/refresh/", {
+            const { data } = await api.post("auth/jwt/refresh/", {
                 refresh: tokens.refresh,
             });
 
