@@ -159,7 +159,7 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://commerceflow.vercel.app"
+    "https://commerceflow.vercel.app",
     "https://commerceflow-ashy.vercel.app",
     "https://commerceflow-1v0li5teo-hm-dev1.vercel.app",
 ]
