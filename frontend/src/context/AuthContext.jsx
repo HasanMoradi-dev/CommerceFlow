@@ -58,7 +58,7 @@ export function AuthProvider({children}) {
                     const res = await api.post("/auth/users/" , {
             username : formData.username,
             password : formData.password,
-            re_password : formData.re_password ,
+            re_password : formData.confirmPassword ,
             email : formData.email
 
         })
