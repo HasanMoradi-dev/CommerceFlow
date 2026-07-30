@@ -7,7 +7,7 @@ async function  getProducts(url=null,search="" , ordering="" , category="")  {
     const res = await api.get(url);
     return res.data;
   }
-  const res = await api.get(`products/?search=${search}&ordering=${ordering}&category=${category ? category : ""}/`);
+  const res = await api.get(`products/?search=${search}&ordering=${ordering}&category=${category ? category : ""}`);
   return res.data;
 
 }
