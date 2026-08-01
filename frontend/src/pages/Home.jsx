@@ -83,6 +83,7 @@ function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featured.map((product) => (
               <ProductCard
+                id = {product.id}
                 product={product.variants[0]}
                 name={product.name}
                 image={product.image}

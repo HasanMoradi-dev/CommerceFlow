@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import mediaURL from "../utils/mediaUrl.js";
 
 function ProductCard({ product, name, image , id}) {
-  console.log(product)
-  console.log(id)
-  console.log(product.id)
-  console.log(JSON.stringify(product))
+
   return (
     <Link to={`/products/${id}`} className="group">
       <div className="relative bg-gray-800 rounded-2xl shadow-lg p-4 m-2 overflow-hidden
