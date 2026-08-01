@@ -60,6 +60,10 @@ Home Page
 
 ![Home](assets/Home.png)
 
+Products
+
+![Products](assets/Products.png)
+
 Login & Register
 
 ![Login](assets/Login.png)
