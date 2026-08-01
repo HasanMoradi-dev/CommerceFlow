@@ -95,11 +95,12 @@ function Products() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {products.map((product) => (
             <ProductCard
+                key={product.id}
+              id={product.id}
               product={product.variants[0]}
               name={product.name}
               image={product.image}
-              key={product.id}
-              id={product.id}
+
             />
           ))}
         </div>
