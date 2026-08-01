@@ -58,23 +58,15 @@ Screenshots
 
 Home Page
 
-Add screenshot here
-
-Product Details
-
-Add screenshot here
-
-Shopping Cart
-
-Add screenshot here
-
-User Orders
-
-Add screenshot here
+![Home](assets/Home.png)
 
 Login & Register
 
-Add screenshot here
+![Login](assets/Login.png)
+![Register](assets/Register.png)
+
+Contact
+![Contact](assets/Contact.png)
 
 ---
 
