@@ -26,7 +26,7 @@ function ProductCard({ product, name, image , id}) {
 
         <div className="relative bg-gray-900/50 rounded-xl overflow-hidden mb-4">
           <img
-            src={mediaURL(image)}
+            src={image}
             className="w-full h-48 object-contain p-3 transition-transform duration-500
                        ease-out group-hover:scale-110"
             alt={name}
