@@ -3,6 +3,7 @@ import mediaURL from "../utils/mediaUrl.js";
 
 function ProductCard({ product, name, image , id}) {
   console.log(product)
+  console.log(id)
   console.log(product.id)
   console.log(JSON.stringify(product))
   return (
